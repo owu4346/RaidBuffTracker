@@ -85,9 +85,9 @@ public class Checks
                 return true;   
             }
 
-        if (!plugin.Configuration.TargetedDebuffs && debuffActionsWithNpcTarget.Contains((int)actionId)) 
+        if (plugin.Configuration.TargetedDebuffs && debuffActionsWithNpcTarget.Contains((int)actionId)) 
             {
-                return false;   
+                return true;   
             }
 
         IPlayerCharacter? player = Service.ObjectTable.SearchById(sourceId) as IPlayerCharacter;         
