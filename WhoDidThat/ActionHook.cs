@@ -108,36 +108,43 @@ namespace RaidBuffTracker
                  */
                 receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
-                int[] roleActionsWithPlayerTarget =
-                        {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood, (int)ClassJobActions.ArcaneCircle};
-                    int[] debuffActionsWithNpcTarget = 
-                    {
-                        (int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
-                        (int)ClassJobActions.Dokumori,
-                    };
-                    int[] mitigationNpcTarget = new[]
-                    {
-                        (int)ClassJobActions.Addle, (int)ClassJobActions.Feint,
-                        (int)ClassJobActions.Reprisal, (int)ClassJobActions.Dismantle
-                    };
-                    bool roleAction = roleActionsWithPlayerTarget.Contains<int>((int)actionId);
-                    bool actionIsTargetingNpc = debuffActionsWithNpcTarget.Contains((int)actionId) ||
-                                                mitigationNpcTarget.Contains((int)actionId);
-                    bool shouldLogAction;
-                    if (actionIsTargetingNpc)
-                    {
-                        shouldLogAction = checks.CheckLogNPCTarget(gameObjectID, effectArray, actionId, mitigationNpcTarget, debuffActionsWithNpcTarget);
-                    }
-                    else
-                    {
-                        shouldLogAction = checks.CheckLog(targets, gameObjectID, sourceCharacter, effectArray, effectTrail,
-                                                          roleAction, actionId);
-                    }
+                int[] raidBuffsWithPlayerTarget =
+                        {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood, 
+                         (int)ClassJobActions.ArcaneCircle, (int)ClassJobActions.BattleLitany, 
+                         (int)ClassJobActions.Embolden, (int)ClassJobActions.SearingLight,
+                         (int)ClassJobActions.StarryMuse,  (int)ClassJobActions.TechnicalFinish,
+                         (int)ClassJobActions.SingleTechnicalFinish, (int)ClassJobActions.DoubleTechnicalFinish,
+                         (int)ClassJobActions.TripleTechnicalFinish, (int)ClassJobActions.Devilment, 
+                         (int)ClassJobActions.BattleVoice, (int)ClassJobActions.RadiantFinale};
+                int[] debuffActionsWithNpcTarget = 
+                {
+                    (int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
+                    (int)ClassJobActions.Dokumori,
+                };
+                int[] mitigationNpcTarget = new[]
+                {
+                    (int)ClassJobActions.Addle, (int)ClassJobActions.Feint,
+                    (int)ClassJobActions.Reprisal, (int)ClassJobActions.Dismantle
+                };
+                bool actionIsTargetingNpc = debuffActionsWithNpcTarget.Contains((int)actionId) ||
+                                            mitigationNpcTarget.Contains((int)actionId);
+
+                bool raidBuff = raidBuffsWithPlayerTarget.Contains<int>((int)actionId);
+
+                bool shouldLogAction = false;
+                if (actionIsTargetingNpc)
+                {
+                    shouldLogAction = checks.CheckLogNPCTarget(gameObjectID, effectArray, actionId, mitigationNpcTarget, debuffActionsWithNpcTarget);
+                }
+                else if (raidBuff)
+                {
+                    shouldLogAction = true;
+                }
                     
-                    if (shouldLogAction)
-                    {
-                        actionLogger.LogAction(actionId, gameObjectID);
-                    }
+                if (shouldLogAction)
+                {
+                    actionLogger.LogAction(actionId, gameObjectID);
+                }
             }
             catch (Exception e)
             {

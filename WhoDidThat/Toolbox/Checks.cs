@@ -24,7 +24,7 @@ public class Checks
     }
 
     //todo weird bug when enabling "Filter Unique Jobs" and "Players outside your party" - (1 ast in ally raid, no ast anywhere else, still saw notifs)
-    internal unsafe bool CheckLog(uint targets, ulong sourceId, IntPtr sourceCharacter, ActionEffect* effectArray, ulong* effectTrail, bool roleAction, uint actionId)
+    internal unsafe bool CheckLog(uint targets, ulong sourceId, IntPtr sourceCharacter, ActionEffect* effectArray, ulong* effectTrail, bool raidBuff, uint actionId)
     {
         if (targets == 0)
         {
