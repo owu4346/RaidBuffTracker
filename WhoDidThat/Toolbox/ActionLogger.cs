@@ -43,7 +43,7 @@ public class ActionLogger
 
         builder.Append(source + " used ");
 
-        builder.AddUiForeground((ushort)plugin.Configuration.PrefixColor); //cast to short because ???
+        builder.AddUiForeground((ushort)plugin.Configuration.BuffColor); //cast to short because ???
         builder.AddText(actionName);
         builder.AddUiForegroundOff();
         

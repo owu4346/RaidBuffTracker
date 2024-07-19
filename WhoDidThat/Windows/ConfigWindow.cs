@@ -32,8 +32,7 @@ public class ConfigWindow : Window, IDisposable
     public override void Draw()
     {
         var applyStatusEffect = this.Configuration.StatusEffects;
-        var heal = this.Configuration.Healing;
-        var textTag = this.Configuration.TextTag;
+        var buffColorCheckbox = this.Configuration.BuffColorCheckbox;
         var combatTimestamp = Configuration.CombatTimestamp;
         var chatType = this.Configuration.ChatType;
         var multiTarget = this.Configuration.MultiTarget;
@@ -57,16 +56,7 @@ public class ConfigWindow : Window, IDisposable
             this.Configuration.StatusEffects = applyStatusEffect;
             this.Configuration.Save();
         }
-        
-        if (ImGui.Checkbox("Healing Actions", ref heal))
-        {
-            this.Configuration.Healing = heal;
-            this.Configuration.Save();
-        }
         ImGui.Indent();
-        ImGui.TextWrapped("Important!" +
-                          "\nIf \"Healing Actions\" is disabled, Actions that grant a status *and* a heal will not be tracked. " +
-                          "This affects Medica II, E. Diag, Adloquium, etc.");
         ImGui.Unindent();
 
         if (ImGui.Checkbox("Multi-target Abilities", ref multiTarget))
@@ -186,14 +176,14 @@ public class ConfigWindow : Window, IDisposable
             this.whoDidThatPlugin.DrawTimerColorPickerUI();
         }
         
-        var temp = BitConverter.GetBytes(whoDidThatPlugin.UiColors.GetRow(Configuration.PrefixColor).UIForeground);
+        var temp = BitConverter.GetBytes(whoDidThatPlugin.UiColors.GetRow(Configuration.BuffColor).UIForeground);
         x = (float)temp[3] / 255;
         y = (float)temp[2] / 255;
         z = (float)temp[1] / 255;
         sat = (float)temp[0] / 255;
-        if (ImGui.Checkbox("Ability Color", ref textTag))
+        if (ImGui.Checkbox("Buff Color", ref buffColorCheckbox))
         {
-            this.Configuration.TextTag = textTag;
+            this.Configuration.BuffColorCheckbox = buffColorCheckbox;
             this.Configuration.Save();
         }
         ImGui.SameLine();

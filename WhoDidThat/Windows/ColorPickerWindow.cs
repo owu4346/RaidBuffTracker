@@ -92,7 +92,7 @@ public class ColorPickerWindow : Window, IDisposable
         if (ImGui.Button("Test Color"))
         {
             SeStringBuilder builder = new SeStringBuilder();
-            builder.AddUiForeground((ushort) Configuration.PrefixColor);
+            builder.AddUiForeground((ushort) Configuration.BuffColor);
             builder.AddText("[WDT] ");
             builder.AddUiForegroundOff();
             
@@ -126,7 +126,7 @@ public class ColorPickerWindow : Window, IDisposable
                                           (float)temp[1] / 255,
                                           (float)temp[0] / 255)))
                 {
-                    Configuration.PrefixColor = z.RowId;
+                    Configuration.BuffColor = z.RowId;
                     Configuration.Save();
                 }
             }

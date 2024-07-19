@@ -12,12 +12,11 @@ namespace RaidBuffTracker
         public int Version { get; set; } = 0;
         public bool Enabled { get; set; } = true;
         public bool StatusEffects { get; set; } = true;
-        public bool Healing { get; set; } = false;
         public bool MultiTarget { get; set; } = false;
         public bool TargetNpc { get; set; } = false;
         public bool TargetedMit { get; set; } = true;
         public bool TargetedDebuffs { get; set; } = true;
-        public bool TextTag { get; set; } = true;
+        public bool BuffColorCheckbox { get; set; } = true;
         public bool CombatTimestamp { get; set; } = false;
         public bool FilterUniqueJobs { get; set; } = true;
         public bool LogOutsideParty { get; set; } = false;
@@ -29,7 +28,10 @@ namespace RaidBuffTracker
         public bool FilterMelee { get; set; } = false;
         public bool FilterRanged { get; set; } = false;
         public bool FilterCasters { get; set; } = false;
-        public uint PrefixColor { get; set; } = 10;
+        public uint BuffColor { get; set; } = 10;
+        public bool MitColorCheckbox { get; set; } = true;
+
+        public uint MitColor { get; set; } = 10;
         public uint CombatTimerColor { get; set; } = 10;
         public XivChatType ChatType { get; set; } = XivChatType.Debug;
         
