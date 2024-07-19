@@ -33,9 +33,6 @@ public class ConfigWindow : Window, IDisposable
     {
         var applyStatusEffect = this.Configuration.StatusEffects;
         var heal = this.Configuration.Healing;
-        var buffCleanse = this.Configuration.BuffCleanse;
-        var rescue = this.Configuration.RescueKB;
-        var shirk = this.Configuration.Shirk;
         var textTag = this.Configuration.TextTag;
         var combatTimestamp = Configuration.CombatTimestamp;
         var chatType = this.Configuration.ChatType;
@@ -43,9 +40,6 @@ public class ConfigWindow : Window, IDisposable
         var targetNpc = this.Configuration.TargetNpc;
         var targetedMit = this.Configuration.TargetedMit; 
         var targetedDebuffs = this.Configuration.TargetedDebuffs;
-        var provoke = this.Configuration.Provoke;
-        var interrupt = this.Configuration.Interrupt;
-        var noEffectMiss = this.Configuration.NoEffectMiss;
         var singleJob = this.Configuration.FilterUniqueJobs;
         var outsideParty = this.Configuration.LogOutsideParty;
         
@@ -75,39 +69,13 @@ public class ConfigWindow : Window, IDisposable
                           "This affects Medica II, E. Diag, Adloquium, etc.");
         ImGui.Unindent();
 
-        if (ImGui.Checkbox("Debuff Cleanse", ref buffCleanse))
-        {
-            this.Configuration.BuffCleanse = buffCleanse;
-            this.Configuration.Save();
-        }
-        
-        if (ImGui.Checkbox("Rescue/Knockback", ref rescue))
-        {
-            this.Configuration.RescueKB = rescue;
-            this.Configuration.Save();
-        }
-        
-        if (ImGui.Checkbox("Shirk", ref shirk))
-        {
-            this.Configuration.Shirk = shirk;
-            this.Configuration.Save();
-        }
-
         if (ImGui.Checkbox("Multi-target Abilities", ref multiTarget))
         {
             this.Configuration.MultiTarget = multiTarget;
             this.Configuration.Save();
         }
         
-        if (ImGui.Checkbox("Abilities that Missed or Had No Effect", ref noEffectMiss))
-        {
-            this.Configuration.NoEffectMiss = noEffectMiss;
-            this.Configuration.Save();
-        }
-        
         ImGui.Indent();
-        ImGui.TextWrapped("For Example: If you used Surecast/Arms Length and a healer rescued you, " +
-                          "their action would still be logged.");
         ImGui.Unindent();
         
         if (ImGui.Checkbox("Players outside your Party", ref outsideParty)) 
@@ -156,19 +124,6 @@ public class ConfigWindow : Window, IDisposable
             if (ImGui.Checkbox("Track Debuffs", ref targetedDebuffs))
             {
                 this.Configuration.TargetedDebuffs = targetedDebuffs;
-                this.Configuration.Save();
-            }
-            
-            if (ImGui.Checkbox("Track Provoke", ref provoke))
-            {
-                this.Configuration.Provoke = provoke;
-                this.Configuration.Save();
-            }
-
-            
-            if (ImGui.Checkbox("Track Interrupt", ref interrupt))
-            {
-                this.Configuration.Interrupt = interrupt;
                 this.Configuration.Save();
             }
 
@@ -236,7 +191,7 @@ public class ConfigWindow : Window, IDisposable
         y = (float)temp[2] / 255;
         z = (float)temp[1] / 255;
         sat = (float)temp[0] / 255;
-        if (ImGui.Checkbox("[WDT] Tag", ref textTag))
+        if (ImGui.Checkbox("Ability Color", ref textTag))
         {
             this.Configuration.TextTag = textTag;
             this.Configuration.Save();

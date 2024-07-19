@@ -151,47 +151,12 @@ public class Tools
         {
             return true;
         }
-
-        if (effectArray.Contains((int)ActionEffectType.RecoveredFromStatusEffect) && plugin.Configuration.BuffCleanse)
-        {
-            return true;
-        }
         
         if (effectArray.Contains((int)ActionEffectType.ApplyStatusEffectTarget) && plugin.Configuration.StatusEffects)
         {
             return true;
         }
         
-        if (effectArray.Contains((int)ActionEffectType.Knockback) && plugin.Configuration.RescueKB)
-        {
-            return true;
-        }
-        
-        if (effectArray.Contains((int)ActionEffectType.NoEffect) && plugin.Configuration.NoEffectMiss)
-        {
-            return true;
-        }
-        
-        if (effectArray.Contains((int)ActionEffectType.Miss) && plugin.Configuration.NoEffectMiss)
-        {
-            return true;
-        }
-        
-        if (effectArray.Contains((int)ActionEffectType.EnmityChange) && plugin.Configuration.Shirk)
-        {
-            //GOTCHA: this might case unexpected actions to be logged as some random actions have an enmity change effect 
-            return true;
-        }
-        
-        if (effectArray.Contains((int)ActionEffectType.ThreatPosition) && plugin.Configuration.Provoke)
-        {
-            return true;
-        }
-        
-        if (effectArray.Contains((int)ActionEffectType.Interrupt) && plugin.Configuration.Interrupt)
-        {
-            return true;
-        }
         return false;
         
         

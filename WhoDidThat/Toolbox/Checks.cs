@@ -82,7 +82,7 @@ public class Checks
 
         if (plugin.Configuration.TargetedMit && mitigationNpcTarget.Contains((int)actionId)) 
             {
-                return false;   
+                return true;   
             }
 
         if (!plugin.Configuration.TargetedDebuffs && debuffActionsWithNpcTarget.Contains((int)actionId)) 

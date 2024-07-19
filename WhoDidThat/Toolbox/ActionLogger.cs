@@ -43,12 +43,9 @@ public class ActionLogger
 
         builder.Append(source + " used ");
 
-        if (plugin.Configuration.TextTag)
-        {
-            builder.AddUiForeground((ushort)plugin.Configuration.PrefixColor); //cast to short because ???
-            builder.AddText(actionName);
-            builder.AddUiForegroundOff();
-        }
+        builder.AddUiForeground((ushort)plugin.Configuration.PrefixColor); //cast to short because ???
+        builder.AddText(actionName);
+        builder.AddUiForegroundOff();
         
         Service.ChatGui.Print(new XivChatEntry()
         {
