@@ -1,26 +1,22 @@
 ﻿namespace WhoDidThat.Toolbox;
 
 internal enum ClassJobActions : int {
-    Addle= 7560,
-    Feint=7549,
-    Reprisal =7535,
-    LegGraze= 7554,
-    HeadGraze= 7551,
-    FootGraze = 7553,
-    LowBlow = 7540,
-    Interject= 7538,
-    LegSweep = 7863,
-    Provoke = 7533,
-    Peloton = 7557,
-   // ===== PC Target ====
-    Rescue = 7571,
-    Esuna = 7568,
-    Shirk = 7537,
-    // Targeted Job Actions
-    MageBallad = 114,
-    WanderersMinne = 3559,
-    ArmysPaeon = 116,
+    ChainStrategem = 7436,
+    Divination = 16552,
+    Brotherhood = 7396,
+    ArcaneCircle = 24405,
+    BattleLitany = 2557,
     Mug = 2248,
+    Dokumori = 36957,
+    Embolden = 7520,
+    SearingLight = 25801,
+    StarryMuse = 34675,
+    TechnicalFinish = 16004,
+    Devilment = 16011,
+    BattleVoice = 118,
+    RadiantFinale = 25785,
+    Addle = 7560,
+    Feint = 7549,
+    Reprisal = 7535,
     Dismantle = 2887,
-    Chain = 7436
 }

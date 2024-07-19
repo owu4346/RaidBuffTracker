@@ -106,12 +106,11 @@ namespace WhoDidThat
                  */
 
                     int[] roleActionsWithPlayerTarget =
-                        {(int)ClassJobActions.Esuna, (int)ClassJobActions.Rescue, (int)ClassJobActions.Shirk};
+                        {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood};
                     int[] debuffActionsWithNpcTarget = 
                     {
-                        (int)ClassJobActions.LegGraze, (int)ClassJobActions.HeadGraze,
-                        (int)ClassJobActions.LowBlow, (int)ClassJobActions.LegSweep, (int)ClassJobActions.Mug,
-                        (int)ClassJobActions.Chain, (int)ClassJobActions.Interject, (int)ClassJobActions.FootGraze
+                        (int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
+                        (int)ClassJobActions.Dokumori,
                     };
                     int[] mitigationNpcTarget = new[]
                     {
@@ -120,7 +119,7 @@ namespace WhoDidThat
                     };
                     bool roleAction = roleActionsWithPlayerTarget.Contains<int>((int)actionId);
                     bool actionIsTargetingNpc = debuffActionsWithNpcTarget.Contains((int)actionId) ||
-                                                mitigationNpcTarget.Contains((int)actionId) ||  actionId == (int) ClassJobActions.Provoke;
+                                                mitigationNpcTarget.Contains((int)actionId);
                     bool shouldLogAction;
                     if (actionIsTargetingNpc)
                     {

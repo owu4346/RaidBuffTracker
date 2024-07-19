@@ -86,12 +86,6 @@ public class Checks
                         {
                             return false;   
                         }
-
-
-                        if (!plugin.Configuration.Provoke && actionId == (int)ClassJobActions.Provoke)
-                        {
-                            return false;
-                        }
                         
                         IPlayerCharacter? player = Service.ObjectTable.SearchById(sourceId) as IPlayerCharacter;
                         

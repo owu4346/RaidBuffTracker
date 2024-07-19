@@ -1,0 +1,11 @@
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.csproj.AssemblyReference.cache
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.AssemblyInfoInputs.cache
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.AssemblyInfo.cs
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.csproj.CoreCompileInputs.cache
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.sourcelink.json
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\bin\x64\Debug\WhoDidThat.deps.json
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\bin\x64\Debug\WhoDidThat.dll
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\bin\x64\Debug\WhoDidThat.pdb
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.dll
+C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\obj\x64\Debug\WhoDidThat.pdb

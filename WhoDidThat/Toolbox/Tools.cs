@@ -88,22 +88,9 @@ public class Tools
             case (int)ClassJobActions.Addle:
                 return twoOrMoreRolePresent(5); //caster
             case (int)ClassJobActions.Feint:
-            case (int)ClassJobActions.LegSweep:
                 return twoOrMoreRolePresent(3); //melee
             case (int)ClassJobActions.Reprisal:
-            case (int)ClassJobActions.Interject:
-            case (int)ClassJobActions.LowBlow:
-            case (int)ClassJobActions.Provoke:
-                return twoOrMoreRolePresent(1); // tank
-            case (int)ClassJobActions.Rescue:
-            case (int)ClassJobActions.Esuna:
-                return twoOrMoreRolePresent(2); //healer
-            case (int)ClassJobActions.LegGraze:
-            case (int)ClassJobActions.FootGraze:
-            case (int)ClassJobActions.Peloton:
-            case (int)ClassJobActions.HeadGraze:
-                return twoOrMoreRolePresent(4); //phys ranged
-            
+                return twoOrMoreRolePresent(1); // tank 
         }
         return false;
     }
