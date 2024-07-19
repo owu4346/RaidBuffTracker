@@ -34,20 +34,21 @@ public class ActionLogger
         //right now this seems fine but in the future messageTag may become mandatory/very useful - change impl of the timer display?
        SeStringBuilder builder = new SeStringBuilder(); 
 
-        if (plugin.Configuration.TextTag)
-        {
-            builder.AddUiForeground((ushort) plugin.Configuration.PrefixColor); //cast to short because ???
-            builder.AddText("[WDT] ");
-            builder.AddUiForegroundOff();
-        }
-
         if (plugin.Configuration.CombatTimestamp && plugin.CombatTimer.inCombat())
         {
             builder.AddUiForeground((ushort) plugin.Configuration.CombatTimerColor); //cast to short because ???
             builder.AddText(plugin.CombatTimer.getCurrentCombatTime() + " ");
             builder.AddUiForegroundOff(); 
         }
-        builder.Append(source + " used " + actionName);
+
+        builder.Append(source + " used ");
+
+        if (plugin.Configuration.TextTag)
+        {
+            builder.AddUiForeground((ushort)plugin.Configuration.PrefixColor); //cast to short because ???
+            builder.AddText(actionName);
+            builder.AddUiForegroundOff();
+        }
         
         Service.ChatGui.Print(new XivChatEntry()
         {

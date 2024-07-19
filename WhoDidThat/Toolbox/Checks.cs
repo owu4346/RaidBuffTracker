@@ -4,6 +4,8 @@ using System.Linq;
 using Dalamud.Game.ClientState.Objects.Enums;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Game.Text;
+using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Logging;
 using Dalamud.Plugin.Services;
 using Lumina.Excel.GeneratedSheets;
@@ -66,83 +68,76 @@ public class Checks
 
     internal unsafe bool CheckLogNPCTarget(ulong sourceId, ActionEffect* effectArray, uint actionId, int[] mitigationNpcTarget, int[] debuffActionsWithNpcTarget)
     {
-
-                        if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) == 0)
-                        {
-                            return false;
-                        }
-                        
-                        if (!plugin.Configuration.TargetNpc)
-                        {
-                            return false;
-                        }
-
-                        if (!plugin.Configuration.TargetedMit && mitigationNpcTarget.Contains((int)actionId)) 
-                        {
-                            return false;   
-                        }
-                        
-                        if (!plugin.Configuration.TargetedDebuffs && debuffActionsWithNpcTarget.Contains((int)actionId)) 
-                        {
-                            return false;   
-                        }
-                        
-                        IPlayerCharacter? player = Service.ObjectTable.SearchById(sourceId) as IPlayerCharacter;
-                        
-                        if (!ShouldLogEvenIfUnique(player.ClassJob.GameData, actionId))
-                        {
-                            return false;
-                        }
-
-                        if (!tools.ShouldLogRole(player.ClassJob.GameData.PartyBonus))
-                        {
-                            return false;
-                        }
-                        bool isInParty = Service.PartyList.Any();
-                        bool actorInParty = Service.PartyList.Count(member =>
-                        {
-                            return member.ObjectId == sourceId;
-                        }) > 0;
-                        
-                        if (isInParty)
-                        {
-                            if (!plugin.Configuration.LogOutsideParty && !actorInParty)
-                            {
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            if (!plugin.Configuration.SelfLog)
-                            {
-                                return false;
-                            }
-                        }
-                        
-                        ulong localPlayerId = Service.ClientState.LocalPlayer!.GameObjectId;
-                        if (sourceId == localPlayerId && !plugin.Configuration.SelfLog)
-                        {
-                            return false;
-                        }
+        if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) == 0)
+            {
+                return false;
+            }
 
 
-                        if (tools.ShouldLogEffects(tools.getEffects(0, effectArray)))
-                        {
-                            return true;
-                        }
+        if (!plugin.Configuration.TargetNpc)
+            {
+                return false;
+            }
 
-                        return false;
+
+        if (plugin.Configuration.TargetedMit && mitigationNpcTarget.Contains((int)actionId)) 
+            {
+                return true;   
+            }
+
+        if (!plugin.Configuration.TargetedDebuffs && debuffActionsWithNpcTarget.Contains((int)actionId)) 
+            {
+                return false;   
+            }
+
+        IPlayerCharacter? player = Service.ObjectTable.SearchById(sourceId) as IPlayerCharacter;         
+            if (!ShouldLogEvenIfUnique(player.ClassJob.GameData, actionId))
+            {
+                return false;
+            }
+
+            if (!tools.ShouldLogRole(player.ClassJob.GameData.PartyBonus))
+            {
+                return false;
+            }
+            bool isInParty = Service.PartyList.Any();
+            bool actorInParty = Service.PartyList.Count(member =>
+            {
+                return member.ObjectId == sourceId;
+            }) > 0;
+                        
+            if (isInParty)
+            {
+                if (!plugin.Configuration.LogOutsideParty && !actorInParty)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!plugin.Configuration.SelfLog)
+                {
+                    return false;
+                }
+            }
+                        
+            ulong localPlayerId = Service.ClientState.LocalPlayer!.GameObjectId;
+            if (sourceId == localPlayerId && !plugin.Configuration.SelfLog)
+            {
+                return false;
+            }
+
+        if (tools.ShouldLogEffects(tools.getEffects(0, effectArray)))
+        {
+            return true;
+        }
+
+            return false;
     }
 
     internal unsafe bool CheckSelfLog(uint targets, ulong localPlayerId, ActionEffect* effectArray, ulong* effectTrail)
     {
-
-            if (plugin.Configuration.SelfLog)
-            {
-                return tools.ShouldLogEffects(targets, effectTrail, effectArray, localPlayerId);
-            }
-
-            return false;
+        return tools.ShouldLogEffects(targets, effectTrail, effectArray, localPlayerId);
     }
 
     internal unsafe bool CheckPcNotInParty(uint targets, ulong localPlayerId, ActionEffect* effectArray, ulong* effectTrail)

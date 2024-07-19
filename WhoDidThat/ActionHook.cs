@@ -8,6 +8,7 @@ using System.Linq;
 using Dalamud.Game.ClientState.Objects.Enums;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Game.Text;
 using Dalamud.Hooking;
 using Dalamud.Logging;
 using Dalamud.Plugin.Services;
@@ -15,6 +16,8 @@ using Dalamud.Utility.Signatures;
 using Lumina.Excel.GeneratedSheets;
 using WhoDidThat.Toolbox;
 using Action = Lumina.Excel.GeneratedSheets.Action;
+using Dalamud.Game.Text;
+using Dalamud.Game.Text.SeStringHandling;
 
 namespace WhoDidThat
 {
@@ -46,7 +49,6 @@ namespace WhoDidThat
             int sourceId, IntPtr sourceCharacter, IntPtr pos, ActionEffectHeader* effectHeader,
             ActionEffect* effectArray, ulong* effectTrail)
         {
-            receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
             try
             {
                 if (!plugin.Configuration.Enabled)
@@ -104,9 +106,10 @@ namespace WhoDidThat
                   Role Actions:
                      provoke: 7533
                  */
+                receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
-                    int[] roleActionsWithPlayerTarget =
-                        {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood};
+                int[] roleActionsWithPlayerTarget =
+                        {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood, (int)ClassJobActions.ArcaneCircle};
                     int[] debuffActionsWithNpcTarget = 
                     {
                         (int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
