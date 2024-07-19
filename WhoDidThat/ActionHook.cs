@@ -133,7 +133,7 @@ namespace RaidBuffTracker
                     (int)ClassJobActions.Mantra, (int)ClassJobActions.NaturesMinne,
                     (int)ClassJobActions.MagickBarrier, (int)ClassJobActions.TemperaGrassa,
                     (int)ClassJobActions.Troubadour, (int)ClassJobActions.Tactician,
-                    (int)ClassJobActions.ShieldSamba
+                    (int)ClassJobActions.ShieldSamba,
                 };
                 bool actionIsTargetingNpc = debuffActionsWithNpcTarget.Contains((int)actionId) ||
                                             mitigationNpcTarget.Contains((int)actionId);
@@ -149,10 +149,16 @@ namespace RaidBuffTracker
                 }
                 else if (raidBuff)
                 {
-                    shouldLogAction = true;
+                    if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) != 0)
+                    {
+                        shouldLogAction = true;
+                    }
                 } else if (isMitigationParty)
                 {
-                    shouldLogAction = true;
+                    if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) != 0)
+                    {
+                        shouldLogAction = true;
+                    }
                 }
                     
                 if (shouldLogAction)
