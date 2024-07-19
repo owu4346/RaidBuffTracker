@@ -5,23 +5,23 @@ using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
-using WhoDidThat.Timer;
-using WhoDidThat.Toolbox;
-using WhoDidThat.Windows;
+using RaidBuffTracker.Timer;
+using RaidBuffTracker.Toolbox;
+using RaidBuffTracker.Windows;
 
-namespace WhoDidThat
+namespace RaidBuffTracker
 {
     //todo: Granular filtering
-    public sealed class WhoDidThatPlugin : IDalamudPlugin
+    public sealed class RaidBuffTrackerPlugin : IDalamudPlugin
     {
         public string Name => "Who Did That?";
-        private const string CommandName = "/pwdt";
-        private const string CommandConfigName = "/pwdtc";
+        private const string CommandName = "/rbt";
+        private const string CommandConfigName = "/rbtc";
 
         private IDalamudPluginInterface PluginInterface { get; init; }
         public Configuration Configuration { get; init; }
         public ActionHook ActionHook { get; }
-        public WindowSystem WindowSystem = new("WhoDidThat");
+        public WindowSystem WindowSystem = new("RaidBuffTracker");
 
         private ConfigWindow ConfigWindow { get; init; }
         private MainWindow MainWindow { get; init; }
@@ -32,7 +32,7 @@ namespace WhoDidThat
         
         public ExcelSheet<UIColor>? UiColors { get; init; }
 
-        public WhoDidThatPlugin(
+        public RaidBuffTrackerPlugin(
             IDalamudPluginInterface pluginInterface)
         {
             Service.Initialize(pluginInterface);
@@ -60,12 +60,12 @@ namespace WhoDidThat
 
             Service.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
             {
-                HelpMessage = "Type /pwdt to get started."
+                HelpMessage = "Type /rbt to get started."
             });
             
             Service.CommandManager.AddHandler(CommandConfigName, new CommandInfo(OnConfigCommand)
             {
-                HelpMessage = "Type /pwdtc for the plugin config."
+                HelpMessage = "Type /rbtc for the plugin config."
             });
             this.PluginInterface.UiBuilder.Draw += DrawUI;
             this.PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;

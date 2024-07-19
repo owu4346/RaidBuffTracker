@@ -10,14 +10,14 @@ using Dalamud.Logging;
 using Dalamud.Plugin.Services;
 using Lumina.Excel.GeneratedSheets;
 
-namespace WhoDidThat.Toolbox;
+namespace RaidBuffTracker.Toolbox;
 
 public class Checks
 {
-    private readonly WhoDidThatPlugin plugin;
+    private readonly RaidBuffTrackerPlugin plugin;
     private readonly Tools tools;
 
-    public Checks(WhoDidThatPlugin plugin) {
+    public Checks(RaidBuffTrackerPlugin plugin) {
         this.plugin = plugin;
         tools = new Tools(plugin);
         

@@ -45,11 +45,11 @@
     "C:\\Users\\owu43\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.6.1",
+    "version": "0.0.0.1",
     "restore": {
-      "projectUniqueName": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\WhoDidThat.csproj",
-      "projectName": "WhoDidThat",
-      "projectPath": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\WhoDidThat.csproj",
+      "projectUniqueName": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj",
+      "projectName": "RaidBuffTracker",
+      "projectPath": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj",
       "packagesPath": "C:\\Users\\owu43\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\obj\\",
       "projectStyle": "PackageReference",

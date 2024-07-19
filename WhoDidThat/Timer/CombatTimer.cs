@@ -3,16 +3,16 @@ using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Enums;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Plugin.Services;
-using WhoDidThat.Toolbox;
+using RaidBuffTracker.Toolbox;
 
-namespace WhoDidThat.Timer;
+namespace RaidBuffTracker.Timer;
 // Thanks to EngageTimer for general structure
 // https://github.com/xorus/EngageTimer/blob/main/Status/CombatStopwatch.cs
 public class CombatTimer
 {
     private DateTime startTime;
     
-    public CombatTimer(WhoDidThatPlugin plugin)
+    public CombatTimer(RaidBuffTrackerPlugin plugin)
     {
         Service.Condition.ConditionChange += onConditionChange;
     }

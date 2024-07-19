@@ -3,13 +3,13 @@ using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Action = Lumina.Excel.GeneratedSheets.Action;
 
-namespace WhoDidThat.Toolbox;
+namespace RaidBuffTracker.Toolbox;
 
 public class ActionLogger
 {
-    private readonly WhoDidThatPlugin plugin;
+    private readonly RaidBuffTrackerPlugin plugin;
 
-    public ActionLogger(WhoDidThatPlugin plugin) {
+    public ActionLogger(RaidBuffTrackerPlugin plugin) {
         this.plugin = plugin;
         
     }

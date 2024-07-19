@@ -3,13 +3,13 @@ using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace WhoDidThat.Windows;
+namespace RaidBuffTracker.Windows;
 
 public class DebugWindow : Window, IDisposable
 {
     private Configuration Configuration;
-    public DebugWindow(WhoDidThatPlugin whoDidThatPlugin) : base(
-        "WhoDidThat Debug", ImGuiWindowFlags.NoScrollbar |
+    public DebugWindow(RaidBuffTrackerPlugin whoDidThatPlugin) : base(
+        "RaidBuffTracker Debug", ImGuiWindowFlags.NoScrollbar |
                                             ImGuiWindowFlags.NoScrollWithMouse)
     {
         this.SizeConstraints = new WindowSizeConstraints

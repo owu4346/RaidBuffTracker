@@ -4,7 +4,7 @@ using Dalamud.Game.Text;
 using Dalamud.Plugin;
 
 
-namespace WhoDidThat
+namespace RaidBuffTracker
 {
     [Serializable]
     public class Configuration : IPluginConfiguration

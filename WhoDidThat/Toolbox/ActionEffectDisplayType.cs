@@ -2,7 +2,7 @@
  * Attributed to Kouzukii/ffxiv-deathrecap
  * https://github.com/Kouzukii/ffxiv-deathrecap/blob/master/Game/ActionEffectDisplayType.cs
  */
-namespace WhoDidThat.Toolbox;
+namespace RaidBuffTracker.Toolbox;
 
 public enum ActionEffectDisplayType : byte {
     HideActionName = 0,

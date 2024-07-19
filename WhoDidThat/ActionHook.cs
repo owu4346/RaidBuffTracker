@@ -14,21 +14,21 @@ using Dalamud.Logging;
 using Dalamud.Plugin.Services;
 using Dalamud.Utility.Signatures;
 using Lumina.Excel.GeneratedSheets;
-using WhoDidThat.Toolbox;
+using RaidBuffTracker.Toolbox;
 using Action = Lumina.Excel.GeneratedSheets.Action;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 
-namespace WhoDidThat
+namespace RaidBuffTracker
 {
 
     public class ActionHook : IDisposable
     {
-        private readonly WhoDidThatPlugin plugin;
+        private readonly RaidBuffTrackerPlugin plugin;
         private readonly Checks checks;
         private readonly ActionLogger actionLogger;
 
-        public ActionHook(WhoDidThatPlugin plugin) {
+        public ActionHook(RaidBuffTrackerPlugin plugin) {
             this.plugin = plugin;
             checks = new Checks(plugin);
             actionLogger = new ActionLogger(plugin);

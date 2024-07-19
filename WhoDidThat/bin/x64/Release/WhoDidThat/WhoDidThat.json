@@ -1,18 +1,16 @@
 {
-  "Author": "spide-r",
-  "Name": "Who Did That?",
+  "Author": "dapc",
+  "Name": "Raid Buff Tracker",
   "InternalName": "WhoDidThat",
   "AssemblyVersion": "1.6.1.0",
-  "Description": "This plugin can track the following actions:\n- Rescues\n- Healing actions\n- Status/Buff Application\n- Cleanses \n- Heals\n- Mitigation\n- Provoke\n- Shirk\n\nThese will be logged in your chat when they are used on your character.",
+  "Description": "These will be logged in your chat when they are used on your character.",
   "ApplicableVersion": "any",
-  "RepoUrl": "https://github.com/spide-r/WhoDidThat",
+  "RepoUrl": "https://github.com/owu4346/RaidBuffTracker",
   "Tags": [
     "mit",
     "rescue",
-    "whodidthat",
     "combat",
-    "log",
-    "shirk"
+    "log"
   ],
   "CategoryTags": [
     "utility",
@@ -23,6 +21,6 @@
   "LoadSync": false,
   "CanUnloadAsync": false,
   "LoadPriority": 0,
-  "Punchline": "Actively logs healing, cleanses, buffs, and more. Finally figure out who rescued you.",
+  "Punchline": "Actively logs Raid Buffs and Mitigation",
   "AcceptsFeedback": true
 }

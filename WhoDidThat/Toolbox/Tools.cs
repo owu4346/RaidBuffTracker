@@ -3,14 +3,14 @@ using System.Linq;
 using Dalamud.Logging;
 using Lumina.Excel.GeneratedSheets;
 
-namespace WhoDidThat.Toolbox;
+namespace RaidBuffTracker.Toolbox;
 
 public class Tools
 {
-    private readonly WhoDidThatPlugin plugin;
+    private readonly RaidBuffTrackerPlugin plugin;
     
 
-    public Tools(WhoDidThatPlugin plugin)
+    public Tools(RaidBuffTrackerPlugin plugin)
     {
         this.plugin = plugin;
     }

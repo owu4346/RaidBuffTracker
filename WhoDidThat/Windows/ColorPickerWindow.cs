@@ -9,17 +9,17 @@ using FFXIVClientStructs.FFXIV.Common.Math;
 using ImGuiNET;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
-using WhoDidThat.Toolbox;
+using RaidBuffTracker.Toolbox;
 
-namespace WhoDidThat.Windows;
+namespace RaidBuffTracker.Windows;
 
 public class ColorPickerWindow : Window, IDisposable
 {
     private Configuration Configuration;
-    private WhoDidThatPlugin whoDidThatPlugin;
+    private RaidBuffTrackerPlugin whoDidThatPlugin;
     private ImmutableSortedSet<UIColor> colors;
 
-    public ColorPickerWindow(WhoDidThatPlugin whoDidThatPlugin, ExcelSheet<UIColor>? uiColorExcel) : base(
+    public ColorPickerWindow(RaidBuffTrackerPlugin whoDidThatPlugin, ExcelSheet<UIColor>? uiColorExcel) : base(
         "Prefix Color Picker", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoResize |
                                     ImGuiWindowFlags.NoScrollWithMouse)
     {

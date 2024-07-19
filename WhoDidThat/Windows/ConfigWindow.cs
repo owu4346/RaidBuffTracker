@@ -3,16 +3,16 @@ using System.Numerics;
 using Dalamud.Game.Text;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
-using WhoDidThat.Toolbox;
+using RaidBuffTracker.Toolbox;
 
-namespace WhoDidThat.Windows;
+namespace RaidBuffTracker.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {
     private Configuration Configuration;
-    private WhoDidThatPlugin whoDidThatPlugin;
-    public ConfigWindow(WhoDidThatPlugin whoDidThatPlugin) : base(
-        "WhoDidThat Configuration")
+    private RaidBuffTrackerPlugin whoDidThatPlugin;
+    public ConfigWindow(RaidBuffTrackerPlugin whoDidThatPlugin) : base(
+        "RaidBuffTracker Configuration")
     {
         this.whoDidThatPlugin = whoDidThatPlugin;
 

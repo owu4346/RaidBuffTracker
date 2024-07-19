@@ -1,4 +1,4 @@
-﻿namespace WhoDidThat.Toolbox;
+﻿namespace RaidBuffTracker.Toolbox;
 
 internal enum ClassJobActions : int {
     ChainStrategem = 7436,

@@ -7,7 +7,7 @@ using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 
-namespace WhoDidThat.Toolbox;
+namespace RaidBuffTracker.Toolbox;
 
 #pragma warning disable 8618
 // ReSharper disable UnusedAutoPropertyAccessor.Local

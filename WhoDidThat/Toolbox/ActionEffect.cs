@@ -5,7 +5,7 @@
 
 using System.Runtime.InteropServices;
 
-namespace WhoDidThat.Toolbox;
+namespace RaidBuffTracker.Toolbox;
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 internal struct ActionEffect {

@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("spide-r")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Who Did That?")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.6.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.6.1.0+9818e615b7c0b513f184e5bdc6699ddb198dc577")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.6.1.0+81b3106b5735c692fd2209990953a94c6b3e949f")]
 [assembly: System.Reflection.AssemblyProductAttribute("WhoDidThat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WhoDidThat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.6.1.0")]

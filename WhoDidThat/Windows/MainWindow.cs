@@ -3,14 +3,14 @@ using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace WhoDidThat.Windows;
+namespace RaidBuffTracker.Windows;
 
 public class MainWindow : Window, IDisposable
 {
-    private WhoDidThatPlugin whoDidThatPlugin;
+    private RaidBuffTrackerPlugin whoDidThatPlugin;
     private Configuration Configuration;
 
-    public MainWindow(WhoDidThatPlugin whoDidThatPlugin) : base(
+    public MainWindow(RaidBuffTrackerPlugin whoDidThatPlugin) : base(
         "Who Did that?", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoResize)
     {
         this.SizeConstraints = new WindowSizeConstraints
