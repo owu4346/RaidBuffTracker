@@ -108,7 +108,7 @@ namespace RaidBuffTracker
                  */
                 receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
-                int[] raidBuffsWithPlayerTarget =
+                int[] raidBuffs =
                         {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood, 
                          (int)ClassJobActions.ArcaneCircle, (int)ClassJobActions.BattleLitany, 
                          (int)ClassJobActions.Embolden, (int)ClassJobActions.SearingLight,
@@ -126,10 +126,21 @@ namespace RaidBuffTracker
                     (int)ClassJobActions.Addle, (int)ClassJobActions.Feint,
                     (int)ClassJobActions.Reprisal, (int)ClassJobActions.Dismantle
                 };
+                int[] mitigationParty = new[]
+                {
+                    (int)ClassJobActions.ShakeItOff, (int)ClassJobActions.DivineVeil,
+                    (int)ClassJobActions.HeartofLight, (int)ClassJobActions.DarkMissionary,
+                    (int)ClassJobActions.Mantra, (int)ClassJobActions.NaturesMinne,
+                    (int)ClassJobActions.MagickBarrier, (int)ClassJobActions.TemperaGrassa,
+                    (int)ClassJobActions.Troubadour, (int)ClassJobActions.Tactician,
+                    (int)ClassJobActions.ShieldSamba
+                };
                 bool actionIsTargetingNpc = debuffActionsWithNpcTarget.Contains((int)actionId) ||
                                             mitigationNpcTarget.Contains((int)actionId);
 
-                bool raidBuff = raidBuffsWithPlayerTarget.Contains<int>((int)actionId);
+                bool raidBuff = raidBuffs.Contains<int>((int)actionId);
+
+                bool isMitigationParty = mitigationParty.Contains<int>((int)actionId);
 
                 bool shouldLogAction = false;
                 if (actionIsTargetingNpc)
@@ -137,6 +148,9 @@ namespace RaidBuffTracker
                     shouldLogAction = checks.CheckLogNPCTarget(gameObjectID, effectArray, actionId, mitigationNpcTarget, debuffActionsWithNpcTarget);
                 }
                 else if (raidBuff)
+                {
+                    shouldLogAction = true;
+                } else if (isMitigationParty)
                 {
                     shouldLogAction = true;
                 }
