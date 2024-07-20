@@ -11,7 +11,6 @@ public class ActionLogger
 
     public ActionLogger(RaidBuffTrackerPlugin plugin) {
         this.plugin = plugin;
-        
     }
 
     internal void LogAction(uint actionId, ulong sourceId)

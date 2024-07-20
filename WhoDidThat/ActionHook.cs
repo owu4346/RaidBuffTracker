@@ -75,7 +75,6 @@ namespace RaidBuffTracker
                 for (var i = 0; i < targets; i++)
                 {
                     var actionTargetId = (uint)(effectTrail[i] & uint.MaxValue);
-                    bool targetNotInParty = Service.PartyList.Count(p => { return p.ObjectId == actionTargetId; }) == 0;
                     if (plugin.Configuration.Verbose)
                     {
                         if (actionId == 7)
@@ -100,12 +99,6 @@ namespace RaidBuffTracker
                     }
                 }
 
-
-
-                /*
-                  Role Actions:
-                     provoke: 7533
-                 */
                 receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
                 int[] raidBuffs =

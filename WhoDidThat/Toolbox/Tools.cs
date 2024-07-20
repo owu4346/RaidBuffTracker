@@ -23,24 +23,6 @@ public class Tools
     //caster = 5
     
     //have to use party bonus because of square's indie game code
-    public bool ShouldLogRole(byte partyBonus)
-    {
-
-        return true;
-
-    }
-
-    internal bool IsDuplicate(ClassJob originJob)
-    {
-        string originJobName = originJob.Name;
-        bool duplicate = Service.PartyList.Count(p =>
-        {
-            Debug.Assert(p.ClassJob.GameData != null, "p.ClassJob.GameData != null");
-            return p.ClassJob.GameData.Name == originJobName;
-        }) > 1;
-
-        return duplicate;
-    }
     
     public static bool twoOrMoreRolePresent(int role)
     {
@@ -51,40 +33,6 @@ public class Tools
         }) > 1;
 
         return greaterThan1;
-    }
-    
-    internal bool twoOrMoreRoleActionUsersPresent(int roleAction)
-    {
-        switch (roleAction)
-        {
-            case (int)ClassJobActions.Addle:
-                return twoOrMoreRolePresent(5); //caster
-            case (int)ClassJobActions.Feint:
-                return twoOrMoreRolePresent(3); //melee
-            case (int)ClassJobActions.Reprisal:
-                return twoOrMoreRolePresent(1); // tank 
-        }
-        return false;
-    }
-
-
-    internal unsafe bool ShouldLogEffects(uint targets, ulong* effectTrail, ActionEffect* effectArray, ulong localPlayerId)
-    {
-
-        for (var i = 0; i < targets; i++)
-        {
-
-            var actionTargetId = (uint)(effectTrail[i] & uint.MaxValue);
-            if (actionTargetId != localPlayerId) 
-            {
-                continue;
-            }
-
-            var effects = getEffects(i, effectArray);
-            return ShouldLogEffects(effects);
-        }
-        return false;
-
     }
     
     internal unsafe int[] getEffects(int targetIdx, ActionEffect* effectArray)
