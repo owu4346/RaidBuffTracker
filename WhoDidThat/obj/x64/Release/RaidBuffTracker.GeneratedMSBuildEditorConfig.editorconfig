@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RaidBuffTracker
-build_property.ProjectDir = C:\Users\owu43\Source\Repos\RaidBuffTracker\WhoDidThat\
+build_property.ProjectDir = C:\Users\owu43\source\repos\RaidBuffTracker\WhoDidThat\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

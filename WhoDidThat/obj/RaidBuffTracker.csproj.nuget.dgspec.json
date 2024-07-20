@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj": {}
+    "C:\\Users\\owu43\\source\\repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj": {
+    "C:\\Users\\owu43\\source\\repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj": {
       "version": "0.0.0.1",
       "restore": {
-        "projectUniqueName": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj",
+        "projectUniqueName": "C:\\Users\\owu43\\source\\repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj",
         "projectName": "RaidBuffTracker",
-        "projectPath": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj",
+        "projectPath": "C:\\Users\\owu43\\source\\repos\\RaidBuffTracker\\WhoDidThat\\RaidBuffTracker.csproj",
         "packagesPath": "C:\\Users\\owu43\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\owu43\\Source\\Repos\\RaidBuffTracker\\WhoDidThat\\obj\\",
+        "outputPath": "C:\\Users\\owu43\\source\\repos\\RaidBuffTracker\\WhoDidThat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\owu43\\AppData\\Roaming\\NuGet\\NuGet.Config",

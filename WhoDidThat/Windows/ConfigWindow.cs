@@ -37,8 +37,7 @@ public class ConfigWindow : Window, IDisposable
         var chatType = this.Configuration.ChatType;
         var multiTarget = this.Configuration.MultiTarget;
         var targetNpc = this.Configuration.TargetNpc;
-        var targetedMit = this.Configuration.TargetedMit; 
-        var targetedDebuffs = this.Configuration.TargetedDebuffs;
+        var Mitigation = this.Configuration.Mitigation; 
         var singleJob = this.Configuration.FilterUniqueJobs;
         var outsideParty = this.Configuration.LogOutsideParty;
         
@@ -105,15 +104,9 @@ public class ConfigWindow : Window, IDisposable
         if (Configuration.TargetNpc)
         {
             ImGui.Separator();
-            if (ImGui.Checkbox("Track Mitigation", ref targetedMit))
+            if (ImGui.Checkbox("Track Mitigation", ref Mitigation))
             {
-                this.Configuration.TargetedMit = targetedMit;
-                this.Configuration.Save();
-            }
-            
-            if (ImGui.Checkbox("Track Debuffs", ref targetedDebuffs))
-            {
-                this.Configuration.TargetedDebuffs = targetedDebuffs;
+                this.Configuration.Mitigation = Mitigation;
                 this.Configuration.Save();
             }
 

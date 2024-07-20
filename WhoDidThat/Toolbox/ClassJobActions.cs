@@ -18,7 +18,7 @@ internal enum ClassJobActions : int {
     SingleTechnicalFinish = 16193,
     DoubleTechnicalFinish = 16194,
     TripleTechnicalFinish = 16195,
-    QuadTechnicalFinish = 16196,
+    QuadtripleTechnicalFinish = 16196,
     Devilment = 16011,
     BattleVoice = 118,
     RadiantFinale = 25785,

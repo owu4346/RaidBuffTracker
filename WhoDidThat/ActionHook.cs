@@ -112,10 +112,11 @@ namespace RaidBuffTracker
                         {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood, 
                          (int)ClassJobActions.ArcaneCircle, (int)ClassJobActions.BattleLitany, 
                          (int)ClassJobActions.Embolden, (int)ClassJobActions.SearingLight,
-                         (int)ClassJobActions.StarryMuse,  (int)ClassJobActions.TechnicalFinish,
+                         (int)ClassJobActions.StarryMuse, (int)ClassJobActions.TechnicalFinish,
                          (int)ClassJobActions.SingleTechnicalFinish, (int)ClassJobActions.DoubleTechnicalFinish,
-                         (int)ClassJobActions.TripleTechnicalFinish, (int)ClassJobActions.Devilment, 
-                         (int)ClassJobActions.BattleVoice, (int)ClassJobActions.RadiantFinale};
+                         (int)ClassJobActions.TripleTechnicalFinish, (int)ClassJobActions.QuadtripleTechnicalFinish,
+                         (int)ClassJobActions.Devilment, (int)ClassJobActions.BattleVoice,
+                         (int)ClassJobActions.RadiantFinale};
                 int[] debuffActionsWithNpcTarget = 
                 {
                     (int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
@@ -155,7 +156,7 @@ namespace RaidBuffTracker
                     }
                 } else if (isMitigationParty)
                 {
-                    if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) != 0)
+                    if (plugin.Configuration.Mitigation && (Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) != 0)
                     {
                         shouldLogAction = true;
                     }

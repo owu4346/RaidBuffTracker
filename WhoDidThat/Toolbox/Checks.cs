@@ -80,12 +80,12 @@ public class Checks
             }
 
 
-        if (plugin.Configuration.TargetedMit && mitigationNpcTarget.Contains((int)actionId)) 
+        if (plugin.Configuration.Mitigation && mitigationNpcTarget.Contains((int)actionId)) 
             {
                 return true;   
             }
 
-        if (plugin.Configuration.TargetedDebuffs && debuffActionsWithNpcTarget.Contains((int)actionId)) 
+        if (debuffActionsWithNpcTarget.Contains((int)actionId)) 
             {
                 return true;   
             }

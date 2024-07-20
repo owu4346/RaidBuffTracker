@@ -14,8 +14,7 @@ namespace RaidBuffTracker
         public bool StatusEffects { get; set; } = true;
         public bool MultiTarget { get; set; } = false;
         public bool TargetNpc { get; set; } = false;
-        public bool TargetedMit { get; set; } = true;
-        public bool TargetedDebuffs { get; set; } = true;
+        public bool Mitigation { get; set; } = true;
         public bool BuffColorCheckbox { get; set; } = true;
         public bool CombatTimestamp { get; set; } = false;
         public bool FilterUniqueJobs { get; set; } = true;
