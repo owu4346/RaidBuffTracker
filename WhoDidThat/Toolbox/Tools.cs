@@ -25,34 +25,6 @@ public class Tools
     //have to use party bonus because of square's indie game code
     public bool ShouldLogRole(byte partyBonus)
     {
-        if (!plugin.Configuration.ShouldFilterRoles)
-        {
-            return true;
-        }
-
-        if (plugin.Configuration.FilterTank && partyBonus == 1)
-        {
-            return false;
-        }
-
-        if (plugin.Configuration.FilterMelee && partyBonus == 3)
-        {
-            return false;
-        }
-
-        if (plugin.Configuration.FilterRanged && partyBonus == 4)
-        {
-            return false;
-        }
-        
-        if (plugin.Configuration.FilterHealer && partyBonus == 2)
-        {
-            return false;
-        }
-        if (plugin.Configuration.FilterCasters && partyBonus == 5)
-        {
-            return false;
-        }
 
         return true;
 

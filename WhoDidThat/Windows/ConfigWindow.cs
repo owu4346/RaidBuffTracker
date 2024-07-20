@@ -38,17 +38,9 @@ public class ConfigWindow : Window, IDisposable
         var multiTarget = this.Configuration.MultiTarget;
         var targetNpc = this.Configuration.TargetNpc;
         var Mitigation = this.Configuration.Mitigation; 
-        var singleJob = this.Configuration.FilterUniqueJobs;
         var outsideParty = this.Configuration.LogOutsideParty;
         
-        var filterRole = this.Configuration.ShouldFilterRoles;
         var exemptRescueEsuna = this.Configuration.ShouldExemptRoleActions;
-        
-        var filterTank = this.Configuration.FilterTank;
-        var filterMelee = this.Configuration.FilterMelee;
-        var filterHealer = this.Configuration.FilterHealer;
-        var filterRanged = this.Configuration.FilterRanged;
-        var filterCasters = this.Configuration.FilterCasters;
         
         if (ImGui.Checkbox("Status Application", ref applyStatusEffect))
         {
@@ -73,29 +65,10 @@ public class ConfigWindow : Window, IDisposable
             this.Configuration.Save();
         }
         
-        if (ImGui.Checkbox("Filter Unique Jobs", ref singleJob)) 
-        {
-            this.Configuration.FilterUniqueJobs = singleJob;
-            this.Configuration.Save();
-        }
         ImGui.Indent();
         ImGui.TextWrapped("Do not log actions of jobs with only one player.");
         ImGui.Unindent();
 
-        if (Configuration.FilterUniqueJobs)
-        {
-            ImGui.Indent();
-            if (ImGui.Checkbox("Exempt Role actions from this filtration", ref exemptRescueEsuna))
-            {
-                this.Configuration.ShouldExemptRoleActions = exemptRescueEsuna;
-                this.Configuration.Save();
-            }
-        
-            ImGui.Indent();
-            ImGui.TextWrapped("(Rescue, Esuna, and shirk will still be logged even if the party has 2 different healers/tanks.)");
-            ImGui.Unindent();
-            ImGui.Unindent();
-        }
         if (ImGui.Checkbox("Abilities with an NPC Target", ref targetNpc))
         {
             this.Configuration.TargetNpc = targetNpc;
@@ -110,44 +83,6 @@ public class ConfigWindow : Window, IDisposable
                 this.Configuration.Save();
             }
 
-            ImGui.Separator();
-        }
-        if (ImGui.Checkbox("Filter Roles", ref filterRole))
-        {
-            this.Configuration.ShouldFilterRoles = filterRole;
-            this.Configuration.Save();
-        }
-        
-
-        if (Configuration.ShouldFilterRoles)
-        {
-            ImGui.Separator();
-            if (ImGui.Checkbox("Filter Tanks", ref filterTank))
-            {
-                this.Configuration.FilterTank = filterTank;
-                this.Configuration.Save();
-            }
-            if (ImGui.Checkbox("Filter Healers", ref filterHealer))
-            {
-                this.Configuration.FilterHealer = filterHealer;
-                this.Configuration.Save();
-            }
-            if (ImGui.Checkbox("Filter Melee", ref filterMelee))
-            {
-                this.Configuration.FilterMelee = filterMelee;
-                this.Configuration.Save();
-            }
-            if (ImGui.Checkbox("Filter Ranged", ref filterRanged))
-            {
-                this.Configuration.FilterRanged = filterRanged;
-                this.Configuration.Save();
-            }
-            
-            if (ImGui.Checkbox("Filter Casters", ref filterCasters))
-            {
-                this.Configuration.FilterCasters = filterCasters;
-                this.Configuration.Save();
-            }
             ImGui.Separator();
         }
         

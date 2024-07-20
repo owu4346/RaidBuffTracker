@@ -5,15 +5,15 @@
 namespace RaidBuffTracker.Toolbox;
 
 internal enum ActionEffectType : byte {
-    Nothing = 0,
-    Miss = 1,
+    //Nothing = 0,
+    //Miss = 1,
     Heal = 4,
-    NoEffect = 8,
+    //NoEffect = 8,
     ApplyStatusEffectTarget = 14,
     RecoveredFromStatusEffect = 16,
     StartActionCombo = 27,
-    Knockback = 33,
-    Interrupt = 76,
-    ThreatPosition = 24, //voke
-    EnmityChange = 62 //shirk
+    //Knockback = 33,
+    //Interrupt = 76,
+    //ThreatPosition = 24, //voke
+    //EnmityChange = 62 //shirk
 }

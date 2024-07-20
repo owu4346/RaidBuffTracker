@@ -14,7 +14,7 @@ namespace RaidBuffTracker
     //todo: Granular filtering
     public sealed class RaidBuffTrackerPlugin : IDalamudPlugin
     {
-        public string Name => "Who Did That?";
+        public string Name => "RaidBuffTracker";
         private const string CommandName = "/rbt";
         private const string CommandConfigName = "/rbtc";
 

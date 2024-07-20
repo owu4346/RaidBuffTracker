@@ -57,10 +57,8 @@ public class Checks
         
         if (actorInParty)
         {
-
             return this.CheckPartyMember(targets, actionId, sourceCharacter, effectArray, effectTrail, localPlayerId);
         }
-        
         
         return this.CheckPcNotInParty(targets, localPlayerId, effectArray, effectTrail);
     }
@@ -69,70 +67,35 @@ public class Checks
     internal unsafe bool CheckLogNPCTarget(ulong sourceId, ActionEffect* effectArray, uint actionId, int[] mitigationNpcTarget, int[] debuffActionsWithNpcTarget)
     {
         if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) == 0)
-            {
-                return false;
-            }
-
-
-        if (!plugin.Configuration.TargetNpc)
-            {
-                return false;
-            }
-
-
-        if (plugin.Configuration.Mitigation && mitigationNpcTarget.Contains((int)actionId)) 
-            {
-                return true;   
-            }
-
-        if (debuffActionsWithNpcTarget.Contains((int)actionId)) 
-            {
-                return true;   
-            }
-
-        IPlayerCharacter? player = Service.ObjectTable.SearchById(sourceId) as IPlayerCharacter;         
-            if (!ShouldLogEvenIfUnique(player.ClassJob.GameData, actionId))
-            {
-                return false;
-            }
-
-            if (!tools.ShouldLogRole(player.ClassJob.GameData.PartyBonus))
-            {
-                return false;
-            }
-            bool isInParty = Service.PartyList.Any();
-            bool actorInParty = Service.PartyList.Count(member =>
-            {
-                return member.ObjectId == sourceId;
-            }) > 0;
-                        
-            if (isInParty)
-            {
-                if (!plugin.Configuration.LogOutsideParty && !actorInParty)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (!plugin.Configuration.SelfLog)
-                {
-                    return false;
-                }
-            }
-                        
-            ulong localPlayerId = Service.ClientState.LocalPlayer!.GameObjectId;
-            if (sourceId == localPlayerId && !plugin.Configuration.SelfLog)
-            {
-                return false;
-            }
-
-        if (tools.ShouldLogEffects(tools.getEffects(0, effectArray)))
         {
-            return true;
+            return false;
         }
 
-            return false;
+        if (plugin.Configuration.Mitigation && mitigationNpcTarget.Contains((int)actionId)) 
+        {
+            return true;   
+        }
+
+        if (debuffActionsWithNpcTarget.Contains((int)actionId)) 
+        {
+            return true;   
+        }
+
+        bool isInParty = Service.PartyList.Any();
+        bool actorInParty = Service.PartyList.Count(member =>
+        {
+            return member.ObjectId == sourceId;
+        }) > 0;
+                        
+        if (isInParty)
+        {
+            if (!plugin.Configuration.LogOutsideParty && !actorInParty)
+            {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     internal unsafe bool CheckSelfLog(uint targets, ulong localPlayerId, ActionEffect* effectArray, ulong* effectTrail)
@@ -183,19 +146,14 @@ public class Checks
         bool isUnique = !tools.IsDuplicate(originJob);
         if (isUnique)
         {
-            if (plugin.Configuration.FilterUniqueJobs) //Job is unique and we filter unique jobs
+            if (tools.twoOrMoreRoleActionUsersPresent((int)actionId)) //if the action is a role action and two or more of that role action user is present
             {
-                if (tools.twoOrMoreRoleActionUsersPresent((int)actionId)) //if the action is a role action and two or more of that role action user is present
+                if (!plugin.Configuration.ShouldExemptRoleActions) //if we shouldn't exempt role actions from this filtration, dont even bother tracking effects
                 {
-                    if (!plugin.Configuration.ShouldExemptRoleActions) //if we shouldn't exempt role actions from this filtration, dont even bother tracking effects
-                    {
-                        return false;
-                    }
-                } else {
                     return false;
                 }
-
-                
+            } else {
+                return false;
             }
             
         }

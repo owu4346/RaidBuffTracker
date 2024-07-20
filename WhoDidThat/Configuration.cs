@@ -17,16 +17,8 @@ namespace RaidBuffTracker
         public bool Mitigation { get; set; } = true;
         public bool BuffColorCheckbox { get; set; } = true;
         public bool CombatTimestamp { get; set; } = false;
-        public bool FilterUniqueJobs { get; set; } = true;
         public bool LogOutsideParty { get; set; } = false;
-
-        public bool ShouldFilterRoles { get; set; } = false;
         public bool ShouldExemptRoleActions { get; set; } = true;
-        public bool FilterTank { get; set; } = false;
-        public bool FilterHealer { get; set; } = false;
-        public bool FilterMelee { get; set; } = false;
-        public bool FilterRanged { get; set; } = false;
-        public bool FilterCasters { get; set; } = false;
         public uint BuffColor { get; set; } = 10;
         public bool MitColorCheckbox { get; set; } = true;
 
