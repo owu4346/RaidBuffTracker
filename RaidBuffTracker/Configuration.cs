@@ -28,18 +28,19 @@ namespace RaidBuffTracker
                                   (int)ClassJobActions.StarryMuse, (int)ClassJobActions.TechnicalFinish,
                                   (int)ClassJobActions.SingleTechnicalFinish, (int)ClassJobActions.DoubleTechnicalFinish,
                                   (int)ClassJobActions.TripleTechnicalFinish, (int)ClassJobActions.QuadtripleTechnicalFinish,
-                                  (int)ClassJobActions.Devilment, (int)ClassJobActions.BattleVoice,
-                                  (int)ClassJobActions.RadiantFinale};
+                                  (int)ClassJobActions.Devilment, (int)ClassJobActions.BattleVoice, (int)ClassJobActions.RadiantFinale};
         public int[] debuffActionsWithNpcTarget = {(int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
-                                            (int)ClassJobActions.Dokumori};
+                                                   (int)ClassJobActions.Dokumori};
         public int[] mitigationNpcTarget = {(int)ClassJobActions.Addle, (int)ClassJobActions.Feint,
-                                     (int)ClassJobActions.Reprisal, (int)ClassJobActions.Dismantle};
+                                            (int)ClassJobActions.Reprisal, (int)ClassJobActions.Dismantle};
         public int[] mitigationParty = {(int)ClassJobActions.ShakeItOff, (int)ClassJobActions.DivineVeil,
-                                 (int)ClassJobActions.HeartofLight, (int)ClassJobActions.DarkMissionary,
-                                 (int)ClassJobActions.Mantra, (int)ClassJobActions.NaturesMinne,
-                                 (int)ClassJobActions.MagickBarrier, (int)ClassJobActions.TemperaGrassa,
-                                 (int)ClassJobActions.Troubadour, (int)ClassJobActions.Tactician,
-                                 (int)ClassJobActions.ShieldSamba};
+                                        (int)ClassJobActions.HeartofLight, (int)ClassJobActions.DarkMissionary,
+                                        (int)ClassJobActions.Mantra, (int)ClassJobActions.NaturesMinne,
+                                        (int)ClassJobActions.MagickBarrier, (int)ClassJobActions.TemperaGrassa,
+                                        (int)ClassJobActions.Troubadour, (int)ClassJobActions.Tactician,
+                                        (int)ClassJobActions.ShieldSamba};
+
+        public bool resetLog = false;
         public XivChatType ChatType { get; set; } = XivChatType.Debug;
         
         [NonSerialized]

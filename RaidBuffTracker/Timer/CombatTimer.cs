@@ -11,10 +11,12 @@ namespace RaidBuffTracker.Timer;
 public class CombatTimer
 {
     private DateTime startTime;
-    
+    private readonly RaidBuffTrackerPlugin plugin;
+
     public CombatTimer(RaidBuffTrackerPlugin plugin)
     {
         Service.Condition.ConditionChange += onConditionChange;
+        this.plugin = plugin;
     }
 
     public bool inCombat()
@@ -71,6 +73,7 @@ todo combat timer is screwey when not entering in at the same time
         else
         {
             startTime = DateTime.UnixEpoch;
+            plugin.Configuration.resetLog = true;
         }
     }
 

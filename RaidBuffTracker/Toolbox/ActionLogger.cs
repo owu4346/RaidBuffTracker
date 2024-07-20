@@ -23,6 +23,10 @@ public class ActionLogger
 
     internal void LogAction(uint actionId, ulong sourceId, bool isRaidBuff)
     {
+        if(plugin.Configuration.resetLog)
+        {
+            actionLog = new Dictionary<string, List<(string, int)>>();
+        }
         Action? action = null;
         string? source = null;
         IGameObject? gameObject = null;
