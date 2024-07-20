@@ -30,12 +30,6 @@ public class Checks
         {
             return false;
         }
-        
-        if (!plugin.Configuration.MultiTarget && targets > 1)
-        {
-            return false;
-        }
-        
 
         IGameObject sourceActor = Service.ObjectTable.First(o => o.GameObjectId == (uint) sourceId);
         ulong localPlayerId = Service.ClientState.LocalPlayer!.GameObjectId;

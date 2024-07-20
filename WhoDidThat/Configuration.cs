@@ -12,8 +12,6 @@ namespace RaidBuffTracker
         public int Version { get; set; } = 0;
         public bool Enabled { get; set; } = true;
         public bool StatusEffects { get; set; } = true;
-        public bool MultiTarget { get; set; } = false;
-        public bool TargetNpc { get; set; } = false;
         public bool Mitigation { get; set; } = true;
         public bool BuffColorCheckbox { get; set; } = true;
         public bool CombatTimestamp { get; set; } = false;

@@ -35,58 +35,24 @@ public class ConfigWindow : Window, IDisposable
         var buffColorCheckbox = this.Configuration.BuffColorCheckbox;
         var combatTimestamp = Configuration.CombatTimestamp;
         var chatType = this.Configuration.ChatType;
-        var multiTarget = this.Configuration.MultiTarget;
-        var targetNpc = this.Configuration.TargetNpc;
         var Mitigation = this.Configuration.Mitigation; 
         var outsideParty = this.Configuration.LogOutsideParty;
-        
-        var exemptRescueEsuna = this.Configuration.ShouldExemptRoleActions;
         
         if (ImGui.Checkbox("Status Application", ref applyStatusEffect))
         {
             this.Configuration.StatusEffects = applyStatusEffect;
             this.Configuration.Save();
         }
-        ImGui.Indent();
-        ImGui.Unindent();
-
-        if (ImGui.Checkbox("Multi-target Abilities", ref multiTarget))
-        {
-            this.Configuration.MultiTarget = multiTarget;
-            this.Configuration.Save();
-        }
-        
-        ImGui.Indent();
-        ImGui.Unindent();
-        
         if (ImGui.Checkbox("Players outside your Party", ref outsideParty)) 
         {
             this.Configuration.LogOutsideParty = outsideParty;
             this.Configuration.Save();
         }
-        
-        ImGui.Indent();
-        ImGui.TextWrapped("Do not log actions of jobs with only one player.");
-        ImGui.Unindent();
-
-        if (ImGui.Checkbox("Abilities with an NPC Target", ref targetNpc))
+        if (ImGui.Checkbox("Track Mitigation", ref Mitigation))
         {
-            this.Configuration.TargetNpc = targetNpc;
+            this.Configuration.Mitigation = Mitigation;
             this.Configuration.Save();
         }
-        if (Configuration.TargetNpc)
-        {
-            ImGui.Separator();
-            if (ImGui.Checkbox("Track Mitigation", ref Mitigation))
-            {
-                this.Configuration.Mitigation = Mitigation;
-                this.Configuration.Save();
-            }
-
-            ImGui.Separator();
-        }
-        
-        ImGui.NewLine();
         var timerColor = BitConverter.GetBytes(whoDidThatPlugin.UiColors.GetRow(Configuration.CombatTimerColor).UIForeground);
         var x = (float)timerColor[3] / 255;
         var y = (float)timerColor[2] / 255;
