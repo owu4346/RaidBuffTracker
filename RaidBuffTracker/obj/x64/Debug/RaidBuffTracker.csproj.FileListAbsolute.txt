@@ -1,0 +1,11 @@
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\bin\x64\Debug\RaidBuffTracker.deps.json
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\bin\x64\Debug\RaidBuffTracker.dll
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\bin\x64\Debug\RaidBuffTracker.pdb
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.csproj.AssemblyReference.cache
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.AssemblyInfoInputs.cache
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.AssemblyInfo.cs
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.csproj.CoreCompileInputs.cache
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.sourcelink.json
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.dll
+C:\Users\owu43\source\repos\RaidBuffTracker\RaidBuffTracker\obj\x64\Debug\RaidBuffTracker.pdb

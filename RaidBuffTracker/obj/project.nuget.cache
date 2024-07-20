@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/cQTj2N/aTs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\owu43\\source\\repos\\RaidBuffTracker\\RaidBuffTracker\\RaidBuffTracker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\owu43\\.nuget\\packages\\dalamudpackager\\2.1.13\\dalamudpackager.2.1.13.nupkg.sha512"
+  ],
+  "logs": []
+}
