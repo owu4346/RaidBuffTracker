@@ -10,11 +10,11 @@ namespace RaidBuffTracker.Windows;
 public class ConfigWindow : Window, IDisposable
 {
     private Configuration Configuration;
-    private RaidBuffTrackerPlugin whoDidThatPlugin;
-    public ConfigWindow(RaidBuffTrackerPlugin whoDidThatPlugin) : base(
+    private RaidBuffTrackerPlugin raidBuffTrackerPlugin;
+    public ConfigWindow(RaidBuffTrackerPlugin raidBuffTrackerPlugin) : base(
         "RaidBuffTracker Configuration")
     {
-        this.whoDidThatPlugin = whoDidThatPlugin;
+        this.raidBuffTrackerPlugin = raidBuffTrackerPlugin;
 
         this.SizeConstraints = new WindowSizeConstraints
         {
@@ -24,7 +24,7 @@ public class ConfigWindow : Window, IDisposable
 
         this.SizeCondition = ImGuiCond.Always;
 
-        this.Configuration = whoDidThatPlugin.Configuration;
+        this.Configuration = raidBuffTrackerPlugin.Configuration;
     }
 
     public void Dispose() { }
@@ -32,6 +32,7 @@ public class ConfigWindow : Window, IDisposable
     public override void Draw()
     {
         var buffColorCheckbox = this.Configuration.BuffColorCheckbox;
+        var mitigationColorCheckbox = this.Configuration.MitigationColorCheckbox;
         var combatTimestamp = Configuration.CombatTimestamp;
         var chatType = this.Configuration.ChatType;
         var Mitigation = this.Configuration.Mitigation; 
@@ -41,7 +42,7 @@ public class ConfigWindow : Window, IDisposable
             this.Configuration.Mitigation = Mitigation;
             this.Configuration.Save();
         }
-        var timerColor = BitConverter.GetBytes(whoDidThatPlugin.UiColors.GetRow(Configuration.CombatTimerColor).UIForeground);
+        var timerColor = BitConverter.GetBytes(raidBuffTrackerPlugin.UiColors.GetRow(Configuration.CombatTimerColor).UIForeground);
         var x = (float)timerColor[3] / 255;
         var y = (float)timerColor[2] / 255;
         var z = (float)timerColor[1] / 255;
@@ -55,25 +56,41 @@ public class ConfigWindow : Window, IDisposable
         ImGui.SameLine();
         if (ImGui.ColorButton("Timestamp Color Picker", new Vector4(x,y,z,sat)))
         {
-            this.whoDidThatPlugin.DrawTimerColorPickerUI();
+            this.raidBuffTrackerPlugin.DrawTimerColorPickerUI();
         }
         
-        var temp = BitConverter.GetBytes(whoDidThatPlugin.UiColors.GetRow(Configuration.BuffColor).UIForeground);
-        x = (float)temp[3] / 255;
-        y = (float)temp[2] / 255;
-        z = (float)temp[1] / 255;
-        sat = (float)temp[0] / 255;
+        var buffColor = BitConverter.GetBytes(raidBuffTrackerPlugin.UiColors.GetRow(Configuration.BuffColor).UIForeground);
+        x = (float)buffColor[3] / 255;
+        y = (float)buffColor[2] / 255;
+        z = (float)buffColor[1] / 255;
+        sat = (float)buffColor[0] / 255;
         if (ImGui.Checkbox("Buff Color", ref buffColorCheckbox))
         {
             this.Configuration.BuffColorCheckbox = buffColorCheckbox;
             this.Configuration.Save();
         }
         ImGui.SameLine();
-        if (ImGui.ColorButton("Prefix Color Picker", new Vector4(x,y,z,sat)))
+        if (ImGui.ColorButton("Buff Color Picker", new Vector4(x, y, z, sat)))
         {
-            this.whoDidThatPlugin.DrawColorPickerUI();
+            this.raidBuffTrackerPlugin.DrawBuffColorPickerUI();
         }
-        
+
+        var mitigationColor = BitConverter.GetBytes(raidBuffTrackerPlugin.UiColors.GetRow(Configuration.MitigationColor).UIForeground);
+        x = (float)mitigationColor[3] / 255;
+        y = (float)mitigationColor[2] / 255;
+        z = (float)mitigationColor[1] / 255;
+        sat = (float)mitigationColor[0] / 255;
+        if (ImGui.Checkbox("Mitigation Color", ref mitigationColorCheckbox))
+        {
+            this.Configuration.MitigationColorCheckbox = mitigationColorCheckbox;
+            this.Configuration.Save();
+        }
+        ImGui.SameLine();
+        if (ImGui.ColorButton("Mitigation Color Picker", new Vector4(x, y, z, sat)))
+        {
+            this.raidBuffTrackerPlugin.DrawMitigationColorPickerUI();
+        }
+
         ImGui.SetNextItemWidth(ImGui.CalcTextSize("NPCDialogueAnnouncements").X + 30f ); //hacky but it works
         XivChatType[] types = Enum.GetValues<XivChatType>();
         if (ImGui.BeginCombo("Chat Output Type", chatType.ToString()))

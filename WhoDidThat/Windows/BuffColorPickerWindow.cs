@@ -13,18 +13,18 @@ using RaidBuffTracker.Toolbox;
 
 namespace RaidBuffTracker.Windows;
 
-public class ColorPickerWindow : Window, IDisposable
+public class BuffColorPickerWindow : Window, IDisposable
 {
     private Configuration Configuration;
-    private RaidBuffTrackerPlugin whoDidThatPlugin;
+    private RaidBuffTrackerPlugin raidBuffTrackerPlugin;
     private ImmutableSortedSet<UIColor> colors;
 
-    public ColorPickerWindow(RaidBuffTrackerPlugin whoDidThatPlugin, ExcelSheet<UIColor>? uiColorExcel) : base(
-        "Prefix Color Picker", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoResize |
+    public BuffColorPickerWindow(RaidBuffTrackerPlugin raidBuffTrackerPlugin, ExcelSheet<UIColor>? uiColorExcel) : base(
+        "Buff Color Picker", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoResize |
                                     ImGuiWindowFlags.NoScrollWithMouse)
     {
 
-        this.whoDidThatPlugin = whoDidThatPlugin;
+        this.raidBuffTrackerPlugin = raidBuffTrackerPlugin;
 
         this.SizeConstraints = new WindowSizeConstraints
         {
@@ -34,7 +34,7 @@ public class ColorPickerWindow : Window, IDisposable
 
         this.SizeCondition = ImGuiCond.Always;
 
-        this.Configuration = whoDidThatPlugin.Configuration;
+        this.Configuration = raidBuffTrackerPlugin.Configuration;
         if (uiColorExcel != null)
         {
             // Hardly anyone is going to notice this feature, but I'm happy that its here.
@@ -73,7 +73,6 @@ public class ColorPickerWindow : Window, IDisposable
                 }));
         }
     }
-    
 
     double DegreesToRadians(double degrees)
     {
@@ -81,8 +80,6 @@ public class ColorPickerWindow : Window, IDisposable
     }
     public override void Draw()
     {
-        
-
         float size = ImGui.CalcTextSize("Test Color").X + ImGui.GetStyle().FramePadding.X * 2.0f;
         float avail = ImGui.GetContentRegionAvail().X;
 
@@ -92,16 +89,16 @@ public class ColorPickerWindow : Window, IDisposable
         if (ImGui.Button("Test Color"))
         {
             SeStringBuilder builder = new SeStringBuilder();
-            builder.AddUiForeground((ushort) Configuration.BuffColor);
-            builder.AddText("[WDT] ");
+
+            builder.Append("Player used ");
+
+            builder.AddUiForeground((ushort)Configuration.BuffColor);
+            builder.AddText("Test ");
             builder.AddUiForegroundOff();
-            
-            builder.Append("Player used Test");
-                        
             Service.ChatGui.Print(builder.Build());
         }
         ImGui.NewLine();
-        if (whoDidThatPlugin.UiColors != null)
+        if (raidBuffTrackerPlugin.UiColors != null)
         {
             for (var index = 0; index < colors.Count; index++)
             {
@@ -131,7 +128,6 @@ public class ColorPickerWindow : Window, IDisposable
                 }
             }
         }
-      
     }
     public void Dispose() { }
 

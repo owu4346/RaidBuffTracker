@@ -25,17 +25,15 @@ namespace RaidBuffTracker
     public class ActionHook : IDisposable
     {
         private readonly RaidBuffTrackerPlugin plugin;
-        private readonly Checks checks;
         private readonly ActionLogger actionLogger;
 
         public ActionHook(RaidBuffTrackerPlugin plugin) {
             this.plugin = plugin;
-            checks = new Checks(plugin);
             actionLogger = new ActionLogger(plugin);
             Service.GameInteropProvider.InitializeFromAttributes(this);
             receiveAbilityEffectHook.Enable();
         }
-        
+
         [Signature("40 55 56 57 41 54 41 55 41 56 48 8D AC 24 68 FF FF FF 48 81 EC 98 01 00 00",
                    DetourName = nameof(ReceiveAbilityEffectDetour))]
         private readonly Hook<ReceiveAbilityDelegate> receiveAbilityEffectHook = null!;
@@ -69,7 +67,7 @@ namespace RaidBuffTracker
                     ActionEffectDisplayType.ShowItemName => 0x2000000 + effectHeader->ActionId,
                     _ => effectHeader->ActionAnimationId
                 };
-                
+
                 ulong gameObjectID = Service.ObjectTable.SearchById((uint)sourceId).GameObjectId;
 
                 for (var i = 0; i < targets; i++)
@@ -79,51 +77,32 @@ namespace RaidBuffTracker
 
                 receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
-                int[] raidBuffs =
-                        {(int)ClassJobActions.Divination, (int)ClassJobActions.Brotherhood, 
-                         (int)ClassJobActions.ArcaneCircle, (int)ClassJobActions.BattleLitany, 
-                         (int)ClassJobActions.Embolden, (int)ClassJobActions.SearingLight,
-                         (int)ClassJobActions.StarryMuse, (int)ClassJobActions.TechnicalFinish,
-                         (int)ClassJobActions.SingleTechnicalFinish, (int)ClassJobActions.DoubleTechnicalFinish,
-                         (int)ClassJobActions.TripleTechnicalFinish, (int)ClassJobActions.QuadtripleTechnicalFinish,
-                         (int)ClassJobActions.Devilment, (int)ClassJobActions.BattleVoice,
-                         (int)ClassJobActions.RadiantFinale};
-                int[] debuffActionsWithNpcTarget = 
-                {
-                    (int)ClassJobActions.ChainStrategem, (int)ClassJobActions.Mug,
-                    (int)ClassJobActions.Dokumori,
-                };
-                int[] mitigationNpcTarget = new[]
-                {
-                    (int)ClassJobActions.Addle, (int)ClassJobActions.Feint,
-                    (int)ClassJobActions.Reprisal, (int)ClassJobActions.Dismantle
-                };
-                int[] mitigationParty = new[]
-                {
-                    (int)ClassJobActions.ShakeItOff, (int)ClassJobActions.DivineVeil,
-                    (int)ClassJobActions.HeartofLight, (int)ClassJobActions.DarkMissionary,
-                    (int)ClassJobActions.Mantra, (int)ClassJobActions.NaturesMinne,
-                    (int)ClassJobActions.MagickBarrier, (int)ClassJobActions.TemperaGrassa,
-                    (int)ClassJobActions.Troubadour, (int)ClassJobActions.Tactician,
-                    (int)ClassJobActions.ShieldSamba,
-                };
-                bool actionIsTargetingNpc = debuffActionsWithNpcTarget.Contains((int)actionId) ||
-                                            mitigationNpcTarget.Contains((int)actionId);
+                bool actionIsTargetingNpc = plugin.Configuration.debuffActionsWithNpcTarget.Contains((int)actionId) ||
+                                            plugin.Configuration.mitigationNpcTarget.Contains((int)actionId);
 
-                bool raidBuff = raidBuffs.Contains<int>((int)actionId);
+                bool raidBuff = plugin.Configuration.raidBuffs.Contains<int>((int)actionId);
 
-                bool isMitigationParty = mitigationParty.Contains<int>((int)actionId);
+                bool isMitigationParty = plugin.Configuration.mitigationParty.Contains<int>((int)actionId);
 
                 bool shouldLogAction = false;
+                bool isRaidBuff = false;  //false for mit, true for raidbuff
                 if (actionIsTargetingNpc)
                 {
-                    shouldLogAction = checks.CheckLogNPCTarget(gameObjectID, effectArray, actionId, mitigationNpcTarget, debuffActionsWithNpcTarget);
+                    int result = CheckLogNPCTarget(gameObjectID, effectArray, actionId, plugin.Configuration.mitigationNpcTarget, plugin.Configuration.debuffActionsWithNpcTarget);
+                    if (result == 1) {
+                        shouldLogAction = true;
+                    } else if (result == 2)
+                    {
+                        shouldLogAction = true;
+                        isRaidBuff = true;
+                    }
                 }
                 else if (raidBuff)
                 {
                     if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) != 0)
                     {
                         shouldLogAction = true;
+                        isRaidBuff = true;
                     }
                 } else if (isMitigationParty)
                 {
@@ -132,10 +111,10 @@ namespace RaidBuffTracker
                         shouldLogAction = true;
                     }
                 }
-                    
+
                 if (shouldLogAction)
                 {
-                    actionLogger.LogAction(actionId, gameObjectID);
+                    actionLogger.LogAction(actionId, gameObjectID, isRaidBuff);
                 }
             }
             catch (Exception e)
@@ -144,6 +123,35 @@ namespace RaidBuffTracker
             }
         }
 
+        internal unsafe int CheckLogNPCTarget(ulong sourceId, ActionEffect* effectArray, uint actionId, int[] mitigationNpcTarget, int[] debuffActionsWithNpcTarget)
+        {
+            if ((Service.ClientState.LocalPlayer.StatusFlags & StatusFlags.InCombat) == 0)
+            {
+                return 0;
+            }
+
+            if (plugin.Configuration.Mitigation && mitigationNpcTarget.Contains((int)actionId))
+            {
+                return 1;
+            }
+
+            if (debuffActionsWithNpcTarget.Contains((int)actionId))
+            {
+                return 2;
+            }
+
+            bool isInParty = Service.PartyList.Any();
+            bool actorInParty = Service.PartyList.Count(member =>
+            {
+                return member.ObjectId == sourceId;
+            }) > 0;
+
+            if (isInParty && !actorInParty)
+            {
+                return 0;
+            }
+            return 0;
+        }
         public void Dispose()
         {
             receiveAbilityEffectHook.Disable();

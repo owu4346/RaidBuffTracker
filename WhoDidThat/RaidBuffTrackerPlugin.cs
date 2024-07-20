@@ -25,7 +25,9 @@ namespace RaidBuffTracker
 
         private ConfigWindow ConfigWindow { get; init; }
         private MainWindow MainWindow { get; init; }
-        private ColorPickerWindow ColorPickerWindow { get; init; }
+        private BuffColorPickerWindow BuffColorPickerWindow { get; init; }
+        private MitigationColorPickerWindow MitigationColorPickerWindow { get; init; }
+
         private TimerColorPickerWindow TimerColorPickerWindow { get; init; }
         public CombatTimer CombatTimer { get; init; }
         
@@ -45,14 +47,16 @@ namespace RaidBuffTracker
             
             ConfigWindow = new ConfigWindow(this);
             MainWindow = new MainWindow(this);
-            ColorPickerWindow = new ColorPickerWindow(this, Service.DataManager.Excel.GetSheet<UIColor>());
+            BuffColorPickerWindow = new BuffColorPickerWindow(this, Service.DataManager.Excel.GetSheet<UIColor>());
+            MitigationColorPickerWindow = new MitigationColorPickerWindow(this, Service.DataManager.Excel.GetSheet<UIColor>());
             TimerColorPickerWindow = new TimerColorPickerWindow(this, Service.DataManager.Excel.GetSheet<UIColor>());
 
             CombatTimer = new CombatTimer(this);
             
             WindowSystem.AddWindow(ConfigWindow);
             WindowSystem.AddWindow(MainWindow);
-            WindowSystem.AddWindow(ColorPickerWindow);
+            WindowSystem.AddWindow(BuffColorPickerWindow);
+            WindowSystem.AddWindow(MitigationColorPickerWindow);
             WindowSystem.AddWindow(TimerColorPickerWindow);
 
             Service.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
@@ -75,8 +79,9 @@ namespace RaidBuffTracker
             ActionHook.Dispose();
             ConfigWindow.Dispose();
             MainWindow.Dispose();
-            ColorPickerWindow.Dispose();
-            
+            BuffColorPickerWindow.Dispose();
+            MitigationColorPickerWindow.Dispose();
+            TimerColorPickerWindow.Dispose();
             Service.CommandManager.RemoveHandler(CommandName);
             Service.CommandManager.RemoveHandler(CommandConfigName);
         }
@@ -100,9 +105,13 @@ namespace RaidBuffTracker
         {
             ConfigWindow.IsOpen = true;
         }
-        public void DrawColorPickerUI()
+        public void DrawBuffColorPickerUI()
         {
-            ColorPickerWindow.IsOpen = true;
+            BuffColorPickerWindow.IsOpen = true;
+        }
+        public void DrawMitigationColorPickerUI()
+        {
+            MitigationColorPickerWindow.IsOpen = true;
         }
         public void DrawTimerColorPickerUI()
         {
