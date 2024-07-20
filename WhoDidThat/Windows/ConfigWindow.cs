@@ -31,23 +31,11 @@ public class ConfigWindow : Window, IDisposable
 
     public override void Draw()
     {
-        var applyStatusEffect = this.Configuration.StatusEffects;
         var buffColorCheckbox = this.Configuration.BuffColorCheckbox;
         var combatTimestamp = Configuration.CombatTimestamp;
         var chatType = this.Configuration.ChatType;
         var Mitigation = this.Configuration.Mitigation; 
-        var outsideParty = this.Configuration.LogOutsideParty;
         
-        if (ImGui.Checkbox("Status Application", ref applyStatusEffect))
-        {
-            this.Configuration.StatusEffects = applyStatusEffect;
-            this.Configuration.Save();
-        }
-        if (ImGui.Checkbox("Players outside your Party", ref outsideParty)) 
-        {
-            this.Configuration.LogOutsideParty = outsideParty;
-            this.Configuration.Save();
-        }
         if (ImGui.Checkbox("Track Mitigation", ref Mitigation))
         {
             this.Configuration.Mitigation = Mitigation;
@@ -113,17 +101,6 @@ public class ConfigWindow : Window, IDisposable
         {
             Configuration.ChatType = Service.DalamudPluginInterface.GeneralChatType;
             Configuration.Save();
-        }
-        
-        ImGui.NewLine();
-        ImGui.Separator();
-        
-        if (ImGui.Button("Open Debug Menu"))
-        {
-            this.whoDidThatPlugin.DrawDebugUI();
-        }
-        
-        
-        
+        }    
     }
 }

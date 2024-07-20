@@ -75,28 +75,6 @@ namespace RaidBuffTracker
                 for (var i = 0; i < targets; i++)
                 {
                     var actionTargetId = (uint)(effectTrail[i] & uint.MaxValue);
-                    if (plugin.Configuration.Verbose)
-                    {
-                        if (actionId == 7)
-                        {
-                            continue;
-                        }
-                        Service.PluginLog.Information("S:" + sourceId + " GOID: " + gameObjectID  +  "|A: " + actionId + "|T: " + actionTargetId +
-                                                      "|AN:" + Service.DataManager.Excel.GetSheet<Action>()
-                                                                      ?.GetRow(actionId)?
-                                                                      .Name.RawString);
-                        for (var j = 0; j < 8; j++)
-                        {
-                            ref var actionEffect = ref effectArray[i * 8 + j];
-                            if (actionEffect.EffectType == 0)
-                            {
-                                continue;
-                            }
-
-                            Service.PluginLog.Information("E:" + actionEffect.EffectType);
-
-                        }
-                    }
                 }
 
                 receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);

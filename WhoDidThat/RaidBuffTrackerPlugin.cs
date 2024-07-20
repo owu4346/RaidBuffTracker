@@ -25,7 +25,6 @@ namespace RaidBuffTracker
 
         private ConfigWindow ConfigWindow { get; init; }
         private MainWindow MainWindow { get; init; }
-        private DebugWindow DebugWindow { get; init; }
         private ColorPickerWindow ColorPickerWindow { get; init; }
         private TimerColorPickerWindow TimerColorPickerWindow { get; init; }
         public CombatTimer CombatTimer { get; init; }
@@ -46,7 +45,6 @@ namespace RaidBuffTracker
             
             ConfigWindow = new ConfigWindow(this);
             MainWindow = new MainWindow(this);
-            DebugWindow = new DebugWindow(this);
             ColorPickerWindow = new ColorPickerWindow(this, Service.DataManager.Excel.GetSheet<UIColor>());
             TimerColorPickerWindow = new TimerColorPickerWindow(this, Service.DataManager.Excel.GetSheet<UIColor>());
 
@@ -54,7 +52,6 @@ namespace RaidBuffTracker
             
             WindowSystem.AddWindow(ConfigWindow);
             WindowSystem.AddWindow(MainWindow);
-            WindowSystem.AddWindow(DebugWindow);
             WindowSystem.AddWindow(ColorPickerWindow);
             WindowSystem.AddWindow(TimerColorPickerWindow);
 
@@ -78,7 +75,6 @@ namespace RaidBuffTracker
             ActionHook.Dispose();
             ConfigWindow.Dispose();
             MainWindow.Dispose();
-            DebugWindow.Dispose();
             ColorPickerWindow.Dispose();
             
             Service.CommandManager.RemoveHandler(CommandName);
@@ -108,14 +104,9 @@ namespace RaidBuffTracker
         {
             ColorPickerWindow.IsOpen = true;
         }
-        
         public void DrawTimerColorPickerUI()
         {
             TimerColorPickerWindow.IsOpen = true;
-        }
-        public void DrawDebugUI()
-        {
-            DebugWindow.IsOpen = true;
         }
     }
 }

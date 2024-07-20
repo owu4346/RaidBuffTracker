@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>Spide-r</Authors>
+    <Authors>dapc</Authors>
     <Version>0.0.0.1</Version>
     <Description>RaidBuffTracker</Description>
     <Copyright>dapc</Copyright>

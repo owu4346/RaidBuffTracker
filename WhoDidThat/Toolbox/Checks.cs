@@ -42,12 +42,9 @@ public class Checks
             return member.ObjectId == sourceId;
         }) > 0;
                         
-        if (isInParty)
+        if (isInParty && !actorInParty)
         {
-            if (!plugin.Configuration.LogOutsideParty && !actorInParty)
-            {
-                return false;
-            }
+            return false;
         }
         return false;
     }
