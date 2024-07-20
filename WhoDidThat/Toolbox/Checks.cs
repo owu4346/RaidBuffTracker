@@ -15,12 +15,9 @@ namespace RaidBuffTracker.Toolbox;
 public class Checks
 {
     private readonly RaidBuffTrackerPlugin plugin;
-    private readonly Tools tools;
 
     public Checks(RaidBuffTrackerPlugin plugin) {
         this.plugin = plugin;
-        tools = new Tools(plugin);
-        
     }
     internal unsafe bool CheckLogNPCTarget(ulong sourceId, ActionEffect* effectArray, uint actionId, int[] mitigationNpcTarget, int[] debuffActionsWithNpcTarget)
     {
