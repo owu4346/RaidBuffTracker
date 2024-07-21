@@ -70,12 +70,18 @@ namespace RaidBuffTracker
 
                 ulong gameObjectID = Service.ObjectTable.SearchById((uint)sourceId).GameObjectId;
 
-                for (var i = 0; i < targets; i++)
-                {
-                    var actionTargetId = (uint)(effectTrail[i] & uint.MaxValue);
-                }
-
                 receiveAbilityEffectHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
+
+                bool isInParty = Service.PartyList.Any();
+                bool actorInParty = Service.PartyList.Count(member =>
+                {
+                    return member.ObjectId == sourceId;
+                }) > 0;
+
+                if (isInParty && !actorInParty)
+                {
+                    return;
+                }
 
                 bool actionIsTargetingNpc = plugin.Configuration.debuffActionsWithNpcTarget.Contains((int)actionId) ||
                                             plugin.Configuration.mitigationNpcTarget.Contains((int)actionId);
@@ -138,17 +144,6 @@ namespace RaidBuffTracker
             if (debuffActionsWithNpcTarget.Contains((int)actionId))
             {
                 return 2;
-            }
-
-            bool isInParty = Service.PartyList.Any();
-            bool actorInParty = Service.PartyList.Count(member =>
-            {
-                return member.ObjectId == sourceId;
-            }) > 0;
-
-            if (isInParty && !actorInParty)
-            {
-                return 0;
             }
             return 0;
         }

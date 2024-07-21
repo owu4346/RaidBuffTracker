@@ -108,7 +108,7 @@ public class ActionLogger
     {
         //right now this seems fine but in the future messageTag may become mandatory/very useful - change impl of the timer display?
         SeStringBuilder builder = new SeStringBuilder();
-        builder.AddText(ActionLogToString());
+        //builder.AddText(ActionLogToString());
 
         if (plugin.Configuration.CombatTimestamp && plugin.CombatTimer.inCombat())
         {
