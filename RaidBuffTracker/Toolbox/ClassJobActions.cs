@@ -10,7 +10,7 @@ internal enum ClassJobActions : int {
     Divination = 16552,
     Brotherhood = 7396,
     ArcaneCircle = 24405,
-    BattleLitany = 2557,
+    BattleLitany = 3557,
     Embolden = 7520,
     SearingLight = 25801,
     StarryMuse = 34675,

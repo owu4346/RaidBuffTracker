@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("dapc")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("RaidBuffTracker")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.0.1")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.0.1+db2b1fa89295dad8b54ac47414152dbfb0b4b9b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.0.1+db6a08b952b6c02a6e7904c1157adeb606fa02a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("RaidBuffTracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RaidBuffTracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.0.0.1")]
